@@ -105,7 +105,7 @@ def analysispagecontent(content):
             website='http://91porny.com/video/view/'+webandname.split('">')[0]
 
             flag=0
-            for item in ['熟','肛','同性','干妈','足交','大妈','站街','阿姨']:
+            for item in ['熟','同性','干妈','大妈','站街','阿姨']:
                 if name.find(item)!=-1:
                     flag=1
                     continue
@@ -134,7 +134,7 @@ def download_item(res):
     titlename=res[2]
 
     flag=0
-    for item in ['熟','肛','同性','干妈','足交','大妈','站街','阿姨','坦']:
+    for item in ['熟','同性','干妈','大妈','站街','阿姨']:
         if item in titlename:
             flag=1
     if flag:
@@ -144,7 +144,11 @@ def download_item(res):
     OutPutFileName = authorname+' '+titlename + '.mp4'
 
     if os.path.exists('F:\Vedio\\'+OutPutFileName):
-        print('REPLICA #  ' + OutPutFileName)
+        print('')
+        return
+
+    if os.path.exists('G:\91down\\'+OutPutFileName):
+        print('')
         return
        
     IDM = r'F:\IDM\Internet Download Manager\IDMan.exe'
@@ -217,9 +221,10 @@ if __name__=='__main__':
     
 
     webhead='https://91porny.com/video/category/all/'
-    startflag=input()
+    #startflag=input()
+    startflag='0'
     if startflag!='0':
-        for i in range(1,1001): 
+        for i in range(1,3001): 
             print('#######################    '+str(i)+'    #########################')
             content=getcontent(webhead+str(i))
             analysispagecontent(content)
@@ -236,14 +241,12 @@ if __name__=='__main__':
     p = Pool(4)   # 创建4个进程
     with open('nameweb.csv', 'r',encoding="utf-8") as inf:
         reader = csv.reader(inf)
+        reader=list(reader)
+        reader=list(reversed(reader))  
         #totalnum=len(list(reader)) #make reader a list /WRONG
         for line in reader:
             number=number+1
             #printProgress(number,totalnum)
-
-            if lasttimeflag>0:
-                lasttimeflag=lasttimeflag-1
-                continue
 
             filename=line[0]
             website=line[1]    

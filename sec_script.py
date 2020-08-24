@@ -78,9 +78,9 @@ def getcontent(name):
     data = {'contents': name}
     post_data = urllib.parse.urlencode(data).encode('utf-8')
     headers = {
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-        'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
-        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36 Edg/84.0.522.40'
     }
     # 登录时表单提交到的地址（用开发者工具可以看到）
     req = urllib.request.Request(name, headers=headers,data=post_data)
@@ -140,7 +140,7 @@ def download_item(res):
     titlename=res[2]
 
     flag=0
-    for item in ['熟','肛','同性','干妈','足交','大妈','站街','阿姨','坦']:
+    for item in ['熟','同性','干妈','足交','大妈','站街','阿姨','坦']:
         if item in titlename:
             flag=1
     if flag:
@@ -222,7 +222,7 @@ def printProgress(iteration, total, prefix='', suffix='', decimals=1, barLength=
 if __name__=='__main__':
     
     webhead='https://91porny.com/video/category/all/'
-    for i in range(1,20): 
+    for i in range(1,50): 
         print('#######################    '+str(i)+'    #########################')
         content=getcontent(webhead+str(i))
         analysispagecontent(content)
@@ -237,10 +237,10 @@ if __name__=='__main__':
     p = Pool(4)   # 创建4个进程
     with open('thisnameweb.csv', 'r',encoding="utf-8") as inf:
         reader = csv.reader(inf)
-        totalnum=len(list(reader))
+        #totalnum=len(list(reader_1))
         for line in reader:
-            number=number+1
-            printProgress(number,totalnum)
+            #number=number+1
+            #printProgress(number,totalnum)
 
             filename=line[0]
             website=line[1]    
@@ -259,12 +259,6 @@ if __name__=='__main__':
     
     with open("thisnameweb.csv","w",encoding="utf-8") as inf:
         writer = csv.writer(inf)
-        writer.writerow()
+        writer.writerow('')
 
     print(content)
-
-
-
-
-
-    
